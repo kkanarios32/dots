@@ -28,13 +28,6 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.shiftround = true -- > and < are multiples of 2
   
--- colorscheme
-vim.g.nightfox_style = "nordfox" -- nordfox
-vim.g.nightfox_color_delimiter = "red" -- red errors
-vim.g.nightfox_italic_comments = 1 -- italic comments
-vim.g.nightfox_transparent = 1 -- transparent background
-vim.cmd("colorscheme nightfox")
-
 -- go to last loc when opening a buffer
 vim.cmd([[
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
