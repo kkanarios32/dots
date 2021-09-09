@@ -28,18 +28,69 @@ local custom_on_attach = function(client, bufnr)
 
 end
 
+local lspconfig = require('lspconfig')
+
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
-    custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
-    custom_capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits"
+custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
+custom_capabilities = require('cmp_nvim_lsp').update_capabilities(custom_capabilities)
+
+local servers = {  
+  clangd = {
+    cmd = {
+      "clangd",
+      "--background-index",
+      "--suggest-missing-includes",
+      "--clang-tidy",
+      "--header-insertion=iwyu",
     },
+  },
+  texlab = {
+    filetypes = {'plaintex','tex','bib'},
+    latexFormatter = 'latexindent',
+    settings = {
+      texlab = {
+        rootDirectory = '.',
+        build = {
+          executable = 'latexmk',
+          args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '-pvc' },
+          forwardSearchAfter = true,
+          onSave = true,
+        },
+        forwardSearch = {
+          executable = '/Applications/Skim.app/Contents/MacOS/Skim',
+          args = { '--synctex-forward', '%l:1:%f', '%p' },
+          onSave = true,
+        },
+      },
+    },
+  },
+  dartls = {
+    init_options = {
+      closingLabels = true,
+    },
+    handlers = {
+      ['dart/textDocument/publishClosingLabels'] = require('config.lsp.flutter_handlers').get_callback({highlight = "Comment", prefix = " // "}),
+    }
+  }
 }
+
+local server_init = function(server, config)
+  config = vim.tbl_deep_extend("force", {
+      on_attach = custom_attach,
+      capabilities = custom_capabilites,
+      flags = {
+        debounce_text_changes = 50,
+      },
+    }, config)
+
+  lspconfig[server].setup(config)
+end
+
+for server, config in pairs(servers) do
+  server_init(server,config)
+end
 
 return {
-    on_attach = custom_on_attach,
-    capabilities = custom_capabilities,
+  on_attach = custom_on_attach,
+  capabilities = custom_capabilities,
 }
-

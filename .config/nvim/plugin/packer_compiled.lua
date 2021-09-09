@@ -71,18 +71,41 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
     config = { "\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19config.luasnip\frequire\0" },
-    loaded = true,
-    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/start/LuaSnip"
-  },
-  ["flutter-tools.nvim"] = {
-    config = { "\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29config.lsp.flutter-tools\frequire\0" },
     loaded = false,
-    needs_bufread = true,
-    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/flutter-tools.nvim"
+    needs_bufread = false,
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/LuaSnip",
+    wants = { "friendly-snippets" }
+  },
+  ["cmp-latex-symbols"] = {
+    after_files = { "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/cmp-latex-symbols/after/plugin/cmp_latex.lua" },
+    load_after = {
+      ["nvim-cmp"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/cmp-latex-symbols"
+  },
+  ["cmp-nvim-lsp"] = {
+    after_files = { "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua" },
+    config = { "\27LJ\2\n*\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\15config.lsp\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp",
+    wants = { "nvim-lspconfig" }
+  },
+  cmp_luasnip = {
+    after_files = { "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/cmp_luasnip/after/plugin/cmp_luasnip.lua" },
+    load_after = {
+      ["nvim-cmp"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/cmp_luasnip"
   },
   ["friendly-snippets"] = {
-    loaded = true,
-    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/start/friendly-snippets"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/friendly-snippets"
   },
   ["gitsigns.nvim"] = {
     config = { "\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20config.gitsigns\frequire\0" },
@@ -90,6 +113,20 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim",
     wants = { "plenary.nvim" }
+  },
+  ["indent-blankline.nvim"] = {
+    config = { "\27LJ\2\nm\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\21show_end_of_line\2\25show_current_context\2\nsetup\21indent_blankline\frequire\0" },
+    load_after = {
+      ["nightfox.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim"
+  },
+  ["lspkind-nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/lspkind-nvim"
   },
   ["lualine.nvim"] = {
     config = { "\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19config.lualine\frequire\0" },
@@ -99,51 +136,47 @@ _G.packer_plugins = {
     wants = { "nvim-web-devicons" }
   },
   ["nightfox.nvim"] = {
-    loaded = true,
-    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/start/nightfox.nvim"
+    after = { "indent-blankline.nvim" },
+    config = { "\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20config.nightfox\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/nightfox.nvim"
   },
   ["nvim-autopairs"] = {
     config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21config.autopairs\frequire\0" },
     load_after = {
-      ["nvim-treesitter"] = true
+      ["nvim-cmp"] = true
     },
     loaded = false,
     needs_bufread = false,
     path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
   },
-  ["nvim-compe"] = {
-    after_files = { "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
-    config = { "\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17config.compe\frequire\0" },
+  ["nvim-cmp"] = {
+    after = { "cmp-latex-symbols", "nvim-autopairs", "cmp_luasnip" },
+    config = { "\27LJ\2\n*\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\15config.cmp\frequire\0" },
     loaded = false,
     needs_bufread = false,
-    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/nvim-compe"
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/nvim-cmp",
+    wants = { "LuaSnip", "lspkind-nvim" }
   },
   ["nvim-lspconfig"] = {
-    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23config.lsp.servers\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-ts-rainbow", "nvim-autopairs" },
     loaded = false,
     needs_bufread = true,
     path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
     config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22config.treesitter\frequire\0" },
-    load_after = {
-      ["nvim-ts-rainbow"] = true
-    },
     loaded = false,
     needs_bufread = false,
-    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects"
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects",
+    wants = { "nvim-treesitter", "nvim-ts-rainbow" }
   },
   ["nvim-ts-rainbow"] = {
-    after = { "nvim-treesitter-textobjects" },
-    load_after = {
-      ["nvim-treesitter"] = true
-    },
     loaded = false,
     needs_bufread = false,
     path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/nvim-ts-rainbow"
@@ -174,7 +207,7 @@ _G.packer_plugins = {
     config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21config.telescope\frequire\0" },
     keys = { { "", "<C-f>" } },
     loaded = false,
-    needs_bufread = false,
+    needs_bufread = true,
     path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/telescope.nvim",
     wants = { "plenary.nvim", "popup.nvim" }
   },
@@ -186,10 +219,10 @@ _G.packer_plugins = {
   ["vim-repeat"] = {
     loaded = false,
     needs_bufread = false,
-    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/vim-repeat",
-    wants = { "vim-surround" }
+    path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/vim-repeat"
   },
   ["vim-sleuth"] = {
+    config = { "" },
     loaded = false,
     needs_bufread = false,
     path = "/Users/kellenkanarios/.local/share/nvim/site/pack/packer/opt/vim-sleuth"
@@ -203,11 +236,16 @@ _G.packer_plugins = {
 
 time([[Defining packer_plugins]], false)
 local module_lazy_loads = {
+  ["^LuaSnip"] = "LuaSnip",
+  ["^Telescope"] = "telescope.nvim",
+  ["^friendly%-snippets"] = "friendly-snippets",
+  ["^lspkind%-nvim"] = "lspkind-nvim",
+  ["^nvim%-lspconfig"] = "nvim-lspconfig",
+  ["^nvim%-treesitter"] = "nvim-treesitter",
+  ["^nvim%-ts%-rainbow"] = "nvim-ts-rainbow",
   ["^nvim%-web%-devicons"] = "nvim-web-devicons",
   ["^plenary"] = "plenary.nvim",
-  ["^popup"] = "popup.nvim",
-  ["^telescope"] = "telescope.nvim",
-  ["^vim%-surround"] = "vim-surround"
+  ["^popup"] = "popup.nvim"
 }
 local lazy_load_called = {['packer.load'] = true}
 local function lazy_load_module(module_name)
@@ -234,14 +272,10 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-try_loadstring("\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19config.luasnip\frequire\0", "config", "LuaSnip")
-time([[Config for LuaSnip]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command! -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 -- Keymap lazy-loads
@@ -251,18 +285,13 @@ time([[Defining lazy-load keymaps]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
-  -- Filetype lazy-loads
-time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType flutter ++once lua require("packer.load")({'flutter-tools.nvim'}, { ft = "flutter" }, _G.packer_plugins)]]
-vim.cmd [[au FileType dart ++once lua require("packer.load")({'flutter-tools.nvim'}, { ft = "dart" }, _G.packer_plugins)]]
-time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'vim-commentary', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'lualine.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter'}, { event = "BufRead *" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'gitsigns.nvim', 'nvim-lspconfig'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
-vim.cmd [[au BufEnter * ++once lua require("packer.load")({'vim-repeat', 'vim-sleuth'}, { event = "BufEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'cmp-nvim-lsp', 'gitsigns.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-cmp'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufEnter * ++once lua require("packer.load")({'vim-sleuth', 'vim-surround', 'vim-commentary', 'vim-repeat'}, { event = "BufEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter-textobjects'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au VimEnter * ++once lua require("packer.load")({'nightfox.nvim', 'lualine.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles(0) end
