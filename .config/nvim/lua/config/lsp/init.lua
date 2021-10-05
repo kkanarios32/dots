@@ -51,13 +51,13 @@ local servers = {
         rootDirectory = '.',
         build = {
           executable = 'latexmk',
-          args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '-pvc' },
+          args = { '-pdf', '-interaction=nonstopmode', '-pvc', '-synctex=1' },
           forwardSearchAfter = true,
           onSave = true,
         },
         forwardSearch = {
-          executable = 'zathura',
-          args = { '--synctex-forward', '%l:1:%f', '%p' },
+          executable = '/Applications/Skim.app/Contents/SharedSupport/displayline',
+          args = {"%l", "%p", "%f", "-g"},
           onSave = true,
         },
       },
