@@ -51,7 +51,7 @@ local servers = {
         rootDirectory = '.',
         build = {
           executable = 'latexmk',
-          args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '-pvc' },
+          args = { '-pdf', '-pvc', '-interaction=nonstopmode', '-synctex=1' },
           forwardSearchAfter = true,
           onSave = true,
         },
