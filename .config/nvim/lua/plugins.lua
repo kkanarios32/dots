@@ -62,12 +62,10 @@ require('packer').startup({function(use)
     "nvim-treesitter/nvim-treesitter",
     module = "nvim-treesitter",
     run = ":TSUpdate",
-    branch = "0.5-compat",
   })
   use({
     "nvim-treesitter/nvim-treesitter-textobjects",
     event = "BufRead",
-    branch = "0.5-compat",
     wants = {
       "nvim-treesitter",
       "nvim-ts-rainbow",
@@ -161,16 +159,6 @@ require('packer').startup({function(use)
     },
     config = function()
       require("config.cmp")
-    end
-  })
-  use({
-    "lukas-reineke/indent-blankline.nvim",
-    after = "nightfox.nvim",
-    config = function()
-      require("indent_blankline").setup {
-        show_end_of_line = true,
-        show_current_context = true,
-      }
     end
   })
 end,

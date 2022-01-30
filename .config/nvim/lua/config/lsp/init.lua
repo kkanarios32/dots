@@ -44,21 +44,31 @@ local servers = {
     },
   },
   texlab = {
-    filetypes = {'plaintex','tex','bib'},
-    latexFormatter = 'latexindent',
+    filetypes = { "plaintex", "tex", "bib" },
     settings = {
       texlab = {
-        rootDirectory = '.',
+        auxDirectory = ".",
+        bibtexFormatter = "texlab",
         build = {
-          executable = 'latexmk',
-          args = { '-pdf', '-pvc', '-interaction=nonstopmode', '-synctex=1' },
+          args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+          executable = "latexmk",
           forwardSearchAfter = true,
-          onSave = true,
+          onSave = true
         },
+        chktex = {
+          onEdit = true,
+          onOpenAndSave = true
+        },
+        diagnosticsDelay = 300,
+        formatterLineLength = 80,
         forwardSearch = {
           executable = 'zathura',
           args = { '--synctex-forward', '%l:1:%f', '%p' },
           onSave = true,
+        },
+        latexFormatter = "latexindent",
+        latexindent = {
+          modifyLineBreaks = true
         },
       },
     },
