@@ -84,16 +84,32 @@ require('packer').startup({function(use)
   })
   use({
     "nvim-telescope/telescope.nvim",
-    cmd = { "Telescope" },
-    module = "Telescope",
-    keys = { "<C-f>" },
-    wants = {
-      "plenary.nvim",
-      "popup.nvim",
-    },
+    opt = true,
     config = function()
       require("config.telescope")
     end,
+    cmd = { "Telescope" },
+    module = "telescope",
+    keys = { "<leader><space>", "<leader>fz", "<leader>pp" },
+    wants = {
+      "plenary.nvim",
+      "popup.nvim",
+      "telescope-z.nvim",
+      "telescope-frecency.nvim",
+      "telescope-fzy-native.nvim",
+      "telescope-project.nvim",
+      "trouble.nvim",
+      "telescope-symbols.nvim",
+    },
+    requires = {
+      "nvim-telescope/telescope-z.nvim",
+      "nvim-telescope/telescope-project.nvim",
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-symbols.nvim",
+      "nvim-telescope/telescope-fzy-native.nvim",
+      { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" }
+    },
   })
   use({
     "lewis6991/gitsigns.nvim",
@@ -103,6 +119,10 @@ require('packer').startup({function(use)
     config = function()
       require("config.gitsigns")
     end,
+  })
+  use({
+    "f-person/git-blame.nvim",
+    event = "BufReadPre",
   })
   use({
     "edeneast/nightfox.nvim",
@@ -160,6 +180,27 @@ require('packer').startup({function(use)
     config = function()
       require("config.cmp")
     end
+  })
+  use({
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("config.trouble")
+    end
+  }) 
+  use({
+    "phaazon/hop.nvim",
+    keys = { "gh" },
+    cmd = { "HopWord", "HopChar1" },
+    config = function()
+      require("util").nmap("gh", "<cmd>HopWord<CR>")
+      -- you can configure Hop the way you like here; see :h hop-config
+      require("hop").setup({})
+    end,
+  })
+  use({
+    "Badhi/nvim-treesitter-cpp-tools",
+    ft = {"c", "cpp"}
   })
 end,
 config = {
