@@ -1,3 +1,6 @@
+vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
+local git_blame = require('gitblame')
+
 local function clock()
   return os.date("%H:%M")
 end
@@ -14,9 +17,9 @@ require('lualine').setup {
   sections = {
     lualine_a = { "mode" },
     lualine_b = { "branch" },
-    lualine_c = { { "diagnostics", sources = { "nvim_lsp" } }, "filename" },
-    lualine_x = { "filetype" },
-    lualine_y = { "progress" },
+    lualine_c = { { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available } },
+    lualine_x = { { "diagnostics", sources = { "nvim_lsp" } }, "filename" },
+    lualine_y = { "filetype" },
     lualine_z = { clock },
   },
   inactive_sections = {

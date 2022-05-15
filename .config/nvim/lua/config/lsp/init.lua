@@ -80,7 +80,18 @@ local servers = {
     handlers = {
       ['dart/textDocument/publishClosingLabels'] = require('config.lsp.flutter_handlers').get_callback({highlight = "Comment", prefix = " // "}),
     }
-  }
+  },
+  pylsp = {
+    plugins = {
+      rope_completion = {
+        enabled = true,
+      },
+      yapf = {
+        enabled = true,
+      },
+    }
+  },
+  rust_analyzer = {},
 }
 
 local server_init = function(server, config)
