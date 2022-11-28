@@ -17,6 +17,22 @@ vim.cmd [[packadd packer.nvim]]
 
 require('packer').startup({function(use)
   use({
+    'lervag/vimtex',
+    -- ft = {'tex', 'plaintex', 'bibtex'},
+  })
+  use({
+    'SirVer/ultisnips',
+    module = "ultisnips",
+    requires = {{'honza/vim-snippets', rtp = '.'}},
+    config = function()      
+      vim.g.UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'      
+      vim.g.UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
+      vim.g.UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
+      vim.g.UltiSnipsListSnippets = '<c-x><c-s>'
+      vim.g.UltiSnipsRemoveSelectModeMappings = 0
+    end
+  })
+  use({
     "wbthomason/packer.nvim",
     opt = true,
   })
@@ -41,21 +57,10 @@ require('packer').startup({function(use)
     module = "lspkind-nvim",
   })
   use({
-    "rafamadriz/friendly-snippets", 
-    module = "friendly-snippets",
-  })
-  use({
     "kyazdani42/nvim-web-devicons",
     module = "nvim-web-devicons",
     config = function()
       require("nvim-web-devicons").setup({default = true})
-    end,
-  })
-  use({
-    "windwp/nvim-autopairs",
-    after = "nvim-cmp",
-    config = function()
-      require("config.autopairs")
     end,
   })
   use({
@@ -81,35 +86,6 @@ require('packer').startup({function(use)
     config = function()
       require("config.lsp")
     end,
-  })
-  use({
-    "nvim-telescope/telescope.nvim",
-    opt = true,
-    config = function()
-      require("config.telescope")
-    end,
-    cmd = { "Telescope" },
-    module = "telescope",
-    keys = { "<leader><space>", "<leader>fz", "<leader>pp" },
-    wants = {
-      "plenary.nvim",
-      "popup.nvim",
-      "telescope-z.nvim",
-      "telescope-frecency.nvim",
-      "telescope-fzy-native.nvim",
-      "telescope-project.nvim",
-      "trouble.nvim",
-      "telescope-symbols.nvim",
-    },
-    requires = {
-      "nvim-telescope/telescope-z.nvim",
-      "nvim-telescope/telescope-project.nvim",
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-symbols.nvim",
-      "nvim-telescope/telescope-fzy-native.nvim",
-      { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" }
-    },
   })
   use({
     "lewis6991/gitsigns.nvim",
@@ -159,48 +135,20 @@ require('packer').startup({function(use)
     },
   })
   use({
-    "L3MON4D3/LuaSnip", 
-    module = "LuaSnip",
-    wants = "friendly-snippets",
-    config = function()
-      require("config.luasnip")
-    end   
-  })
-  use({
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     wants = { 
-      "LuaSnip",
+      "ultisnips",
       "lspkind-nvim" 
     },
     requires = {
-      { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp", },
-      { "kdheepak/cmp-latex-symbols", after = "nvim-cmp", },
+      { 'quangnguyen30192/cmp-nvim-ultisnips', 
+        after = "nvim-cmp", 
+        config = function()
+          require("config.cmp")
+        end,
+      },
     },
-    config = function()
-      require("config.cmp")
-    end
-  })
-  use({
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("config.trouble")
-    end
-  }) 
-  use({
-    "phaazon/hop.nvim",
-    keys = { "gh" },
-    cmd = { "HopWord", "HopChar1" },
-    config = function()
-      require("util").nmap("gh", "<cmd>HopWord<CR>")
-      -- you can configure Hop the way you like here; see :h hop-config
-      require("hop").setup({})
-    end,
-  })
-  use({
-    "Badhi/nvim-treesitter-cpp-tools",
-    ft = {"c", "cpp"}
   })
 end,
 config = {

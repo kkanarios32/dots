@@ -1,4 +1,3 @@
-local util = require("util")
 local luasnip = require("luasnip")
 
 luasnip.config.set_config({

@@ -6,7 +6,7 @@ require('nvim-treesitter.configs').setup {
     },
     highlight = {
         enable = true,
-        disable = {"as"}
+        disable = {"latex"}
     },
     textobjects = {
         select = {
